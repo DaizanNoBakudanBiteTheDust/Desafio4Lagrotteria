@@ -1,4 +1,5 @@
 import express from 'express';
+import handlebars from 'express-handlebars'
 import productRouter from './routes/products.router.js';
 import cartRouter from './routes/cart.router.js';
 
@@ -10,6 +11,12 @@ app.use(express.json({}));
 app.use(express.urlencoded({
         extended: true
 }));
+
+// handlebars
+
+app.engine('handlebars', handlebars.engine())
+app.set('views', `${__dirname}/views`)
+app.set('view engine', 'handlebars')
 
 
 app.use(express.static('public'))
