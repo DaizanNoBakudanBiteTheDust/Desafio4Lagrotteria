@@ -1,7 +1,8 @@
 import express from 'express';
-import handlebars from 'express-handlebars'
-import productRouter from './routes/products.router.js';
-import cartRouter from './routes/cart.router.js';
+import handlebars from 'express-handlebars';
+import { __dirname } from './utils.js'
+import productRouter from './routes/api/products.router.js';
+import cartRouter from './routes/api/cart.router.js';
 
 // Crea server express
 const app = express();
