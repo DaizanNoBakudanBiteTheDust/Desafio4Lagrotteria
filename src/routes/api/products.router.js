@@ -13,7 +13,9 @@ const router = Router();
 router.get('/', async (req, res) => {
         const products = await manager.getProducts();
         console.log(products)
-        
+        io.emit("showProducts", products);
+
+        res.send(products);
 });
 
 // params
