@@ -10,7 +10,7 @@ const router = Router();
 const manager = new ProductManager(productsFilePath);
 
 router.get('/realTimeProducts', async (req, res) => { 
-    res.render('realTimeProducts', { products: manager.getProducts() });
+    res.render('realTimeProducts', { products: await manager.getProducts() });
 });
 
 export default router;

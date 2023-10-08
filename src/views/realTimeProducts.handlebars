@@ -3,6 +3,14 @@
 
     <h1 id="ola">Productos agregados</h1>
     <div id="container">
+      
+    {{#each products}}
+    <ul>
+        <li>TITULO: {{this.titulo}}</li>
+        <li>PRECIO: ${{this.precio}}</li>
+        <li>ID: {{this.id}}</li>
+    </ul>
+    {{/each}}
     </div>
   </div>
 </div>
