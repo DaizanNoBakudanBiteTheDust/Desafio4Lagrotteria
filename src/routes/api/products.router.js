@@ -42,9 +42,9 @@ router.get('/', async (req, res) => {
 // postea los productos
 
 router.post('/', async (req, res) => {
-        const products = await manager.getProducts();
-        // Productos que haremos con Postman
-        const product = req.body;
+
+        const io = req.app.get('socketio');
+        io.emit("showProducts", await manager.getProducts());
 
         if (!product.titulo || !product.descripcion || !product.precio || !product.thumbnail || !product.thumbnail || !product.code || !product.stock || !product.category) {
                 //Error del cliente
