@@ -2,12 +2,12 @@ import {
     Router
 } from 'express'
 
-import productManager from '../../managers/productManager.js';
+import ProductManager from '../../managers/productManager.js';
 
 const router = Router();
-const manager = new productManager();
+const manager = new ProductManager();
 
-router.get('/', async (req, res) => { 
+router.get('/realTimeProducts', async (req, res) => { 
     res.render('realTimeProducts', { products: manager.getProducts() });
 });
 

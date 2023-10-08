@@ -1,7 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
-import
-        __dirname
+import{
+        __dirname}
  from './utils.js';
 import {
         Server
@@ -27,11 +27,11 @@ app.use(express.urlencoded({
 // handlebars
 
 app.engine('handlebars', handlebars.engine());
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', `${__dirname}/views`)
 app.set('view engine', 'handlebars');
 
 // Ruta view
-app.use('/realTimeProducts', viewsRouter);
+app.use('/', viewsRouter);
 
 
 // Llama a la ruta de product Router (Todo lo hecho hasta ahora)

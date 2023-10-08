@@ -9,7 +9,7 @@ const manager = new ProductManager(productsFilePath);
 const router = Router();
 
 // traer todos los productos
-
+/*
 router.get('/', async (req, res) => {
         const products = await manager.getProducts();
         console.log(products)
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
                 }
         };
 });
-
+*/
 // postea los productos
 
 router.post('/', async (req, res) => {
