@@ -61,7 +61,7 @@ io.on('connection', socket => {
         socket.on('agregarProducto', data => {
            
                 manager.addProducts();
-                io.emit('mostrartodo', manager.getProducts());
+                io.emit('showProducts', manager.getProducts());
           
         });
     

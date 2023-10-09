@@ -10,10 +10,10 @@ socket.on('showProducts', data => {
     data.forEach(products => {
         container.innerHTML += `
             <ul>
-                <li>titulo: ${products.title}</li> 
-                <li>descripcion: ${products.description}</li>
+                <li>titulo: ${products.titulo}</li> 
+                <li>descripcion: ${products.descripcion}</li>
                 <li>code: ${products.code}</li>
-                <li>precio: ${products.price}</li>
+                <li>precio: ${products.precio}</li>
                 <li>thumbnail: ${products.status}</li>
                 <li>stock: ${products.stock}</li>
                 <li>category: ${products.category}</li>

@@ -13,7 +13,7 @@ const router = Router();
 router.get('/', async (req, res) => {
         const products = await manager.getProducts();
         console.log(products)
-        io.emit("showProducts", products);
+        io.emit('showProducts', products);
 
         res.send(products);
 });
@@ -45,7 +45,6 @@ router.post('/', async (req, res) => {
 
         const products = await manager.getProducts();
         const io = req.app.get('socketio');
-        io.emit("showProducts", products);
 
         const product = req.body;
 
@@ -81,6 +80,7 @@ router.post('/', async (req, res) => {
 
         await manager.addProducts(product);
 
+        io.emit('showProducts', products);
         // status success
         return res.send({
                 status: 'success',
@@ -143,7 +143,7 @@ router.delete('/:pid', async (req, res) => {
                         message: 'product deleted',
                         products
                 });
-                io.emit("showProducts", products);
+                io.emit('showProducts', products);
         } else {
                 //Error del cliente
                 return res.status(404).send({
