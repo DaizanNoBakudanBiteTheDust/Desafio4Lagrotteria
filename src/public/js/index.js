@@ -1,20 +1,23 @@
 // Socket comunica con servidor
 const socket = io();
 
+//acá pondré los productos que me pasa el cliente
+const container = document.getElementById('container');
+
 socket.on('showProducts', data => {
     container.innerHTML = ``
 
-    data.forEach(prod => {
+    data.forEach(products => {
         container.innerHTML += `
             <ul>
-                <li>titulo: ${prod.title}</li> 
-                <li>descripcion: ${prod.description}</li>
-                <li>code: ${prod.code}</li>
-                <li>precio: ${prod.price}</li>
-                <li>thumbnail: ${prod.status}</li>
-                <li>stock: ${prod.stock}</li>
-                <li>category: ${prod.category}</li>
-                <li>id: ${prod.id}</li>
+                <li>titulo: ${products.title}</li> 
+                <li>descripcion: ${products.description}</li>
+                <li>code: ${products.code}</li>
+                <li>precio: ${products.price}</li>
+                <li>thumbnail: ${products.status}</li>
+                <li>stock: ${products.stock}</li>
+                <li>category: ${products.category}</li>
+                <li>id: ${products.id}</li>
             </ul>
         `
     })

@@ -43,8 +43,11 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
+        const products = await manager.getProducts();
         const io = req.app.get('socketio');
-        io.emit("showProducts", await manager.getProducts());
+        io.emit("showProducts", products);
+
+        const product = req.body;
 
         if (!product.titulo || !product.descripcion || !product.precio || !product.thumbnail || !product.thumbnail || !product.code || !product.stock || !product.category) {
                 //Error del cliente
@@ -125,19 +128,22 @@ router.put('/:pid', async (req, res) => {
 // Elimina los productos
 
 router.delete('/:pid', async (req, res) => {
+         
         const products = await manager.getProducts();
-
+        const io = req.app.get('socketio');
         const productId = Number(req.params.pid);
         await manager.deleteProductById(productId);
+        
         const index = products.findIndex(product => product.id === productId);
 
-        if (index !== 1) {
+        if (index !== -1) {
                 await manager.deleteProductById(productId);
                 res.send({
                         status: 'success',
                         message: 'product deleted',
-                        product
+                        products
                 });
+                io.emit("showProducts", products);
         } else {
                 //Error del cliente
                 return res.status(404).send({
@@ -146,5 +152,6 @@ router.delete('/:pid', async (req, res) => {
                 })
         }
 })
+
 
 export default router;
