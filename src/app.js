@@ -58,10 +58,10 @@ app.set('socketio', io);
 io.on('connection', socket => {
     
         //agrego producto via form
-        socket.on('agregarProducto', data => {
+        socket.on('agregarProducto', async data => {
            
-                manager.addProducts();
-                io.emit('showProducts', manager.getProducts());
+                manager.addProducts(JSON.parse(data));
+                io.emit('agregarProducto', await manager.getProducts());
           
         });
     
@@ -70,7 +70,7 @@ io.on('connection', socket => {
          
                 const id = Number(data)
                 await manager.deleteProductById(id);
-                io.emit('mostrartodo', await manager.getProducts());
+                io.emit('showProducts', await manager.getProducts());
           
         });
     

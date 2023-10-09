@@ -132,18 +132,17 @@ router.delete('/:pid', async (req, res) => {
         const products = await manager.getProducts();
         const io = req.app.get('socketio');
         const productId = Number(req.params.pid);
-        await manager.deleteProductById(productId);
-        
         const index = products.findIndex(product => product.id === productId);
 
         if (index !== -1) {
                 await manager.deleteProductById(productId);
+                const updatedProducts = await manager.getProducts();
+                io.emit('showProducts', updatedProducts);
                 res.send({
                         status: 'success',
                         message: 'product deleted',
                         products
                 });
-                io.emit('showProducts', products);
         } else {
                 //Error del cliente
                 return res.status(404).send({
