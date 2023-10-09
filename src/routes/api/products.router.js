@@ -79,8 +79,8 @@ router.post('/', async (req, res) => {
 
 
         await manager.addProducts(product);
-
-        io.emit('showProducts', products);
+        const updatedProducts = await manager.getProducts();
+                io.emit('showProducts', updatedProducts);
         // status success
         return res.send({
                 status: 'success',

@@ -3,18 +3,26 @@ const socket = io();
 
 //AGREGAR
 const agregarForm = document.getElementById('agregarForm');
-const productoInput = document.getElementById('producto');
 
 agregarForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const nuevoProducto = productoInput.value;
+    const nuevoProducto = {
+        titulo: document.getElementById('titulo').value,
+        descripcion: document.getElementById('descripcion').value,
+        precio: parseFloat(document.getElementById('precio').value), 
+        status: document.getElementById('status').value,
+        thumbnail: document.getElementById('thumbnail').value,
+        code: document.getElementById('code').value,
+        stock: parseInt(document.getElementById('stock').value), 
+        category: document.getElementById('category').value
+    };
 
     // Enviar el nuevo producto al servidor a través de sockets
     socket.emit('agregarProducto', nuevoProducto);
 
-    // Limpiar el campo de entrada
-    productoInput.value = '';
+    // Limpiar los campos de entrada
+    agregarForm.reset();
 });
 
 

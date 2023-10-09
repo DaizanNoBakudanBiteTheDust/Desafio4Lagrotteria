@@ -59,10 +59,8 @@ io.on('connection', socket => {
     
         //agrego producto via form
         socket.on('agregarProducto', async data => {
-           
-                manager.addProducts(JSON.parse(data));
-                io.emit('agregarProducto', await manager.getProducts());
-          
+                manager.addProducts(data);
+                io.emit('showProducts', await manager.getProducts());
         });
     
         //elimino via form que me pasa el cliente
